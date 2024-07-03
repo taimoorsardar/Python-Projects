@@ -22,13 +22,6 @@ class TicTacToe:
 
     def available_moves(self):
         return [i for i, spot in enumerate(self.board) if spot == ' ']
-        # moves =[]
-        # for (i,spot) in enumerate(self.board):
-        #     # ['x', 'x', 'o'] --> [(0, 'x'), (1, 'x'), (2, 'o')]
-        #     if spot == '':
-        #         moves.append(i)
-        #
-        # return moves
     
     def empty_squares(self):
         return ' ' in self.board
@@ -37,27 +30,31 @@ class TicTacToe:
         return self.board.count(' ')
 
     def make_move(self, square, letter):
-        # if valid move, then make the move (assign square to letter)
-        # then return true. if invalid return False
-        # square = int(square)
+        '''
+        if valid move, then make the move (assign square to letter)
+        then return true. if invalid return False
+        '''
         if self.board[square] == ' ':
             self.board[square] = letter
             if self.winner(square, letter):
                 self.current_winner = letter
             return True
         return False
+    
     def winner(self,square, letter):
-        # winner if 3 in a row anywhere.. we have to check all of these
-        # first let's check the rows
+        
+        # check rows
         row_ind = square // 3
         row = self.board[row_ind *3 : (row_ind +1) *3]
         if all ([spot ==  letter for spot in row]):
             return True
+        
         # check column
         col_ind = square % 3
         column = [self.board[col_ind+i*3] for i in range(3)]
         if all ([spot ==  letter for spot in column]):
             return True
+        
         # check diagonal
         # but only if the square is an even number (0,2,4,6,8)
         # these are the only moves avalaible to win a diagonal
@@ -80,9 +77,8 @@ def play (game, x_player, o_player, print_game = True):
         game.print_board_nums()
     
     letter = 'X' # starting letter
-    # iterate while the game still has empty squares
-    # (we don't have to worry about the winner because we'll just return that
-    # which breaks the loop)
+    
+    # iterate while the game is NOT over
     while game.empty_squares():
         # get the move from appropriate player
         if letter == 'O':
@@ -100,12 +96,8 @@ def play (game, x_player, o_player, print_game = True):
                 if print_game:
                     print (letter + ' wins!')
                 return letter
-            # after we made our move, we need to alternate letters
+            # alternating moves
             letter = 'O' if letter =='X' else 'X'
-            # if letter == 'x':
-            #     letter = 'O'
-            # else:
-            #     letter = 'X'
         # tiny break
         if print_game:
             time.sleep (1) 

@@ -1,8 +1,8 @@
 def find_next_empty(puzzle):
-    # find the next row, col on the puzzle that's not filled yet -> rep with -1
-    # return row, col tuple (or (None, None) if there is none)
-    
-    # keep in mind that we are using 0-8 for our indices
+    '''
+    find the next row, col on the puzzle that's not filled yet -> rep with -1
+    return row, col tuple (or (None, None) if there is none)
+    '''
     for r in range(9):
         for c in range(9):
             if puzzle[r][c] == -1:
@@ -10,23 +10,22 @@ def find_next_empty(puzzle):
     return None,None # if no spaces left
 
 def is_valid(puzzle, guess, row, col):
-    # figures out whether the guess at the row/col of the puzzle is valid  guess
-    # return True if is valid, otherwise False
-    
-    # let's start with the row
+    '''
+    figures out whether the guess at the row/col of the puzzle is valid  guess
+    return True if is valid, otherwise False
+    '''
+    # Row 
     row_vals = puzzle[row]
     if guess in row_vals:
         return False
     
-    # now with columns
+    # Columns
     col_vals = [puzzle[i][col] for i in range(9)]
     
     if guess in col_vals:
         return False
 
-    # now in 3x3 grids in sudoku
-    # this tricky, but we want to get where the 3x3 square starts
-    # and iterate over 3 values in the row/column
+    # 3x3 grids in sudoku
     row_start = (row//3)*3
     col_start = (col//3)*3
     for r in range(row_start, row_start +3):
@@ -37,11 +36,12 @@ def is_valid(puzzle, guess, row, col):
     return True
 
 def solve_sudoku(puzzle):
-    # solve soduke using backtracking!
-    # our puzzle is a list of lists, where each  inner list is a row in a soduko puzzle
-    # return whether a solution exists
-    # mutates puzzle to be the solution (if solution exists)
-
+    '''
+    solve soduke using backtracking!
+    our puzzle is a list of lists, where each  inner list is a row in a soduko puzzle
+    return whether a solution exists
+    mutates puzzle to be the solution (if solution exists)
+    '''
     # Step 1 choose somewhere on the puzzle to make a guess
     row, col = find_next_empty(puzzle)
 
@@ -67,6 +67,7 @@ def solve_sudoku(puzzle):
     return False
 
 if __name__ == '__main__':
+    # change this board as you want
     example_board = [
         [3, 9, -1,   -1, 5, -1,   -1, -1, -1],
         [-1, -1, -1,   2, -1, -1,   -1, -1, 5],

@@ -1,7 +1,6 @@
 # this is our markov chain composer
 import random
 
-# define the graph in terms of vertices
 class Vertex(object):
     def __init__(self, value):
         self.value = value
@@ -36,8 +35,6 @@ class Graph(object):
         self.vertices = {}
 
     def get_vertex_values(self):
-        # what are the values of the vertices
-        # in other words, return all possible words
         return set(self.vertices.keys())
 
     def add_vertex(self, value):

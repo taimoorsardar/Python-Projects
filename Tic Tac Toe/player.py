@@ -28,9 +28,11 @@ class HumanPlayer(Player):
         val =  None
         while not valid_square:
             square =  input(self.letter + '\'s turn. Input move (0-8): ')
-            # we're going to check that this is a correct value by trying to cast
-            # it into an integer and if its not, then we say it's invalid 
-            # if that spot is not available on the board, we also say it is invalid
+            '''
+            check that this is a correct value by trying to cast
+            it into an integer and if its not, then we say it's invalid 
+            if that spot is not available on the board, we also say it is invalid
+            '''
             try: 
                 val = int(square)
                 if val not in game.available_moves():
@@ -59,11 +61,15 @@ class GeniusComputerPlayer(Player):
         max_player = self.letter # yourself!!
         other_player = 'O' if player == 'X' else 'X'
 
-        # first we want to check if the previous move is a winner
-        # this is our base case
+        '''
+        check if the previous move is a winner
+        this is our base case
+        '''
         if state.current_winner == other_player:
-            # we should return position and score because we need to keep track of the score
-            # for minimax to work
+            '''
+            return position and score because we need to keep track of the score
+            for minimax to work
+            '''
             return {'position': None, 'score': 1 * (state.num_empty_squares() + 1) if other_player == max_player else -1 * (
                         state.num_empty_squares() + 1)
                     }

@@ -1,7 +1,5 @@
 # implementation of binary search algo
 
-# we will prove that binary search is faster than naive search
-
 # naive search : scan entire list  and ask if it equals to the target
 # if yes then return the index
 # if no then return -1
@@ -16,7 +14,7 @@ def naive_search (list, target):
     return -1
 
 # binary search uses divide and conquer
-# we will leverage the fact that list is SORTED and then use binary search
+# The list must be SORTED before using binary search
 def binary_search(list, target, low = None, high = None):
     if low == None:
         low = 0
@@ -40,7 +38,7 @@ if __name__ == '__main__':
 #    print(naive_search(l,target))
 #    print(binary_search(l,target))
 
-# lets do a little time analysis
+#    time analysis
 
     length = 10000
     # build a sorted list of length 10000

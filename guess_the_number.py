@@ -1,5 +1,5 @@
 import random
-# in this fucntion user will guess
+# user will guess based on feed back from the computer
 def user_guess (x):
     random_number = random.randint(1,x)
     guess = 0
@@ -18,7 +18,7 @@ def user_guess (x):
         
     print(f'Yay, Congrats. You have guessed the number {random_number} correctly.')
 
-# in this function computer will guess    
+# computer will guess based on feedback from the user    
 def computer_guess(x):
     low = 1
     high = x

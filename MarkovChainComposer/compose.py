@@ -9,7 +9,9 @@ def get_words_from_text(text_path):
     with open(text_path, 'r',encoding='utf-8', errors='ignore') as f:
         text = f.read()
 
-        # this part is mainly for songs composer
+        '''
+        this part is mainly for songs composer
+        '''
         # remove the brackets and text inside it
         text = re.sub(r'\[(.+)\]', ' ', text) 
 
@@ -26,7 +28,6 @@ def make_graph(words):
     g = Graph()
     previous_word = None
     
-    # for each word
     for word in words:
         # check if each word is in the graph, and if not then add it
         word_vertex = g.get_vertex(word)
@@ -37,7 +38,7 @@ def make_graph(words):
         # set our words to the previous word and iterate!
         previous_word = word_vertex
 
-    # we have to generate the probability mappings before composing
+    # generate the probability mappings before composing
     g.generate_probability_mappings()
     return g
 

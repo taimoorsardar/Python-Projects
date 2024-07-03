@@ -2,16 +2,22 @@ import random
 from words import words
 import string
 
-# this function is used to get a valid word from the above lists as some words have dashes or spacec in between them 
 def get_valid_words(words):
+    '''
+    get a valid word from the above lists as 
+    some words have dashes or spacec in between them
+    ''' 
     word = random.choice(words) # randomly choosing something from the list
     while "-" in word or " " in word:
         word = random.choice(words)
     
     return word.upper() # uppercase all letters
 
-# we need to keep track of which letters we guessed and which correct letters in the word we guessed 
 def hangman():
+    '''
+    keep track of which letters we guessed and 
+    which correct letters in the word we guessed
+    ''' 
     word = get_valid_words(words)
     word_letters = set(word) # letters in the words
     alphabet = set(string.ascii_uppercase)
@@ -22,10 +28,9 @@ def hangman():
     # getting user input
     while len(word_letters) > 0 and lives > 0:
         #letters used
-        #print ("You have "+lives+" lives left")
         print('You have ',lives,'used these lettrs:  ', ' '.join(used_letters))
 
-        #what current word is but with dashes which letters are yet to be guessed
+        # what current word is but with dashes which letters are yet to be guessed
         word_list = [letter if letter in used_letters else '-' for letter in word]
         print ('Current word: ',' '.join(word_list))
 
